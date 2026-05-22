@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone } from "lucide-react";
+import { CheckCircle2, Mail, Phone, X } from "lucide-react";
 import { useState } from "react";
 
 const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSe_2krepfL58XkngAvprbM6eLAQtW0iJdF0O_XjihELVkUEXQ/formResponse";
@@ -22,7 +22,7 @@ const LinkedinIcon = ({ size = 24 }: { size?: number }) => (
 );
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   return (
     <section id="contact" className="relative py-20 z-10 bg-navy-900 border-t border-white/5 md:py-32">
@@ -89,7 +89,10 @@ export default function Contact() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
             className="glass p-5 rounded-lg border border-white/10 flex flex-col gap-4 sm:p-8"
-            onSubmit={() => setSubmitted(true)}
+            onSubmit={(event) => {
+              setShowConfirmation(true);
+              event.currentTarget.reset();
+            }}
           >
             <input type="hidden" name="fvv" value="1" />
             <input type="hidden" name="pageHistory" value="0" />
@@ -108,17 +111,48 @@ export default function Contact() {
               <textarea name="entry.712405175" rows={4} required className="w-full bg-navy-900/50 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-electric-blue transition-colors resize-none" placeholder="Your message here..."></textarea>
             </div>
             <button className="mt-4 py-3 w-full bg-gradient-to-r from-electric-blue to-electric-purple text-white font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-shadow">
-              {submitted ? "Message Sent" : "Send Message"}
+              Send Message
             </button>
-            {submitted && (
-              <p className="text-sm text-electric-blue">
-                Thanks for reaching out. Your message has been sent.
-              </p>
-            )}
           </motion.form>
           <iframe name="google-form-submit-frame" className="hidden" title="Google form submission" />
         </div>
       </div>
+
+      {showConfirmation && (
+        <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="contact-confirmation-title">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 12 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+            className="relative w-full max-w-sm rounded-lg border border-white/10 bg-navy-900 p-6 text-center shadow-[0_0_40px_rgba(0,240,255,0.18)]"
+          >
+            <button
+              type="button"
+              aria-label="Close confirmation"
+              onClick={() => setShowConfirmation(false)}
+              className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full border border-white/10 text-white/70 transition-colors hover:border-electric-blue hover:text-electric-blue"
+            >
+              <X size={18} />
+            </button>
+            <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-electric-blue/10 text-electric-blue">
+              <CheckCircle2 size={30} />
+            </div>
+            <h3 id="contact-confirmation-title" className="mb-2 text-xl font-bold text-white">
+              Message Sent
+            </h3>
+            <p className="text-sm leading-relaxed text-gray-400">
+              Thanks for reaching out. I received your message and will get back to you soon.
+            </p>
+            <button
+              type="button"
+              onClick={() => setShowConfirmation(false)}
+              className="mt-6 w-full rounded-lg bg-gradient-to-r from-electric-blue to-electric-purple py-3 font-bold text-white transition-shadow hover:shadow-[0_0_20px_rgba(0,240,255,0.4)]"
+            >
+              Done
+            </button>
+          </motion.div>
+        </div>
+      )}
 
       <div className="container mx-auto px-4 sm:px-6 mt-20 text-center text-sm text-gray-500 border-t border-white/5 pt-8 md:mt-32">
         <p>&copy; {new Date().getFullYear()} Gopikrishnan D. All rights reserved.</p>
