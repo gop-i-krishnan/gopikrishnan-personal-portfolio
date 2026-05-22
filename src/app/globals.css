@@ -42,6 +42,16 @@ body {
 ::-webkit-scrollbar { display: none; }
 html { -ms-overflow-style: none; scrollbar-width: none; }
 
+.custom-cursor {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor {
+    display: block;
+  }
+}
+
 @utility glass {
   background-color: rgb(255 255 255 / 0.05);
   backdrop-filter: blur(12px);

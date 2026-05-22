@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className={`${inter.variable} font-sans bg-navy-900 text-white antialiased`}>
+      <body suppressHydrationWarning className={`${inter.variable} font-sans bg-navy-900 text-white antialiased`}>
         <SmoothScroll>
           <CustomCursor />
           <Navbar />

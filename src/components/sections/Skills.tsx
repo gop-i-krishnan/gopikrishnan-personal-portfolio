@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 const skillCategories = [
   {
@@ -42,14 +41,14 @@ const skillCategories = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative py-32 z-10">
-      <div className="container mx-auto px-6">
+    <section id="skills" className="relative py-20 z-10 md:py-32">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
             Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-purple text-glow">Expertise</span>
@@ -57,7 +56,7 @@ export default function Skills() {
           <div className="w-24 h-1 bg-gradient-to-r from-electric-blue to-electric-purple mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid gap-5 max-w-6xl mx-auto md:grid-cols-2 md:gap-8">
           {skillCategories.map((category, idx) => (
             <motion.div
               key={idx}
@@ -65,7 +64,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="glass p-8 rounded-2xl border border-white/10 relative overflow-hidden group hover:border-electric-blue/40 transition-colors"
+              className="glass p-5 rounded-lg border border-white/10 relative overflow-hidden group hover:border-electric-blue/40 transition-colors sm:p-8"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-electric-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               

@@ -37,14 +37,14 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative py-32 z-10">
-      <div className="container mx-auto px-6">
+    <section id="projects" className="relative py-20 z-10 md:py-32">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
             Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-purple text-glow">Projects</span>
@@ -52,7 +52,7 @@ export default function Projects() {
           <div className="w-24 h-1 bg-gradient-to-r from-electric-blue to-electric-purple mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid gap-6 max-w-7xl mx-auto md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {projects.map((project, idx) => (
             <motion.div
               key={idx}
@@ -60,10 +60,10 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: idx * 0.2 }}
-              className="group glass rounded-2xl overflow-hidden border border-white/10 hover:border-electric-blue/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(0,240,255,0.15)] flex flex-col"
+              className="group glass rounded-lg overflow-hidden border border-white/10 hover:border-electric-blue/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(0,240,255,0.15)] flex flex-col"
             >
               {/* Image Placeholder / Gradient */}
-              <div className="h-48 w-full bg-gradient-to-br from-navy-800 to-navy-900 relative overflow-hidden">
+              <div className="h-40 w-full bg-gradient-to-br from-navy-800 to-navy-900 relative overflow-hidden sm:h-48">
                 <div className="absolute inset-0 bg-electric-blue/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
                 <div className="absolute inset-0 opacity-50 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-electric-purple/20 via-transparent to-transparent" />
                 
@@ -73,8 +73,8 @@ export default function Projects() {
                 </div>
               </div>
 
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-electric-blue transition-colors">
+              <div className="p-5 flex-1 flex flex-col sm:p-6">
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-electric-blue transition-colors sm:text-2xl">
                   {project.title}
                 </h3>
                 <p className="text-gray-400 text-sm mb-6 flex-1">

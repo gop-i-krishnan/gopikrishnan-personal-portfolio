@@ -8,6 +8,12 @@ export default function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    if (!canHover) {
+      return;
+    }
+
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -38,7 +44,7 @@ export default function CustomCursor() {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-4 h-4 bg-electric-blue rounded-full pointer-events-none z-[100] mix-blend-screen"
+        className="custom-cursor fixed top-0 left-0 w-4 h-4 bg-electric-blue rounded-full pointer-events-none z-[100] mix-blend-screen"
         animate={{
           x: mousePosition.x - 8,
           y: mousePosition.y - 8,
@@ -51,7 +57,7 @@ export default function CustomCursor() {
         }}
       />
       <motion.div
-        className="fixed top-0 left-0 w-12 h-12 border border-electric-blue rounded-full pointer-events-none z-[100] mix-blend-screen"
+        className="custom-cursor fixed top-0 left-0 w-12 h-12 border border-electric-blue rounded-full pointer-events-none z-[100] mix-blend-screen"
         animate={{
           x: mousePosition.x - 24,
           y: mousePosition.y - 24,

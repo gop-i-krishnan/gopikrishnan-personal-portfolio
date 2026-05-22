@@ -20,47 +20,46 @@ const LinkedinIcon = ({ size = 24 }: { size?: number }) => (
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative py-32 z-10 bg-navy-900 border-t border-white/5">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="relative py-20 z-10 bg-navy-900 border-t border-white/5 md:py-32">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-purple text-glow">Connect</span>
+            Let&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-purple text-glow">Connect</span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-electric-blue to-electric-purple mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          
+        <div className="grid gap-10 max-w-5xl mx-auto md:grid-cols-2 md:gap-12">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="space-y-5 sm:space-y-6"
           >
             <h3 className="text-2xl font-bold text-white mb-6">Reach Out</h3>
-            
-            <a href="mailto:gopigopikrishnand@gmail.com" className="flex items-center gap-4 p-4 glass rounded-xl border border-white/10 hover:border-electric-blue/50 group transition-colors">
-              <div className="w-12 h-12 rounded-full bg-electric-blue/10 flex items-center justify-center text-electric-blue group-hover:scale-110 transition-transform">
+
+            <a href="mailto:gopigopikrishnand@gmail.com" className="flex items-center gap-3 p-4 glass rounded-lg border border-white/10 hover:border-electric-blue/50 group transition-colors sm:gap-4">
+              <div className="w-11 h-11 shrink-0 rounded-full bg-electric-blue/10 flex items-center justify-center text-electric-blue group-hover:scale-110 transition-transform sm:h-12 sm:w-12">
                 <Mail />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-gray-400">Email</p>
-                <p className="font-medium text-white">gopigopikrishnand@gmail.com</p>
+                <p className="font-medium text-white break-all">gopigopikrishnand@gmail.com</p>
               </div>
             </a>
 
-            <a href="tel:+919074891201" className="flex items-center gap-4 p-4 glass rounded-xl border border-white/10 hover:border-electric-blue/50 group transition-colors">
-              <div className="w-12 h-12 rounded-full bg-electric-blue/10 flex items-center justify-center text-electric-blue group-hover:scale-110 transition-transform">
+            <a href="tel:+919074891201" className="flex items-center gap-3 p-4 glass rounded-lg border border-white/10 hover:border-electric-blue/50 group transition-colors sm:gap-4">
+              <div className="w-11 h-11 shrink-0 rounded-full bg-electric-blue/10 flex items-center justify-center text-electric-blue group-hover:scale-110 transition-transform sm:h-12 sm:w-12">
                 <Phone />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-gray-400">Phone</p>
                 <p className="font-medium text-white">+91-9074891201</p>
               </div>
@@ -81,7 +80,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="glass p-8 rounded-2xl border border-white/10 flex flex-col gap-4"
+            className="glass p-5 rounded-lg border border-white/10 flex flex-col gap-4 sm:p-8"
             onSubmit={(e) => e.preventDefault()}
           >
             <div>
@@ -100,12 +99,11 @@ export default function Contact() {
               Send Message
             </button>
           </motion.form>
-
         </div>
       </div>
-      
-      <div className="container mx-auto px-6 mt-32 text-center text-sm text-gray-500 border-t border-white/5 pt-8">
-        <p>© {new Date().getFullYear()} Gopikrishnan D. All rights reserved.</p>
+
+      <div className="container mx-auto px-4 sm:px-6 mt-20 text-center text-sm text-gray-500 border-t border-white/5 pt-8 md:mt-32">
+        <p>&copy; {new Date().getFullYear()} Gopikrishnan D. All rights reserved.</p>
         <p className="mt-1">Building the intelligent future.</p>
       </div>
     </section>

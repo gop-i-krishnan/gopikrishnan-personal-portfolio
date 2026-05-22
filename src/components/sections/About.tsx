@@ -20,14 +20,14 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="relative py-32 z-10">
-      <div className="container mx-auto px-6">
+    <section id="about" className="relative py-20 z-10 md:py-32">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
             About <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-electric-purple text-glow">Me</span>
@@ -35,13 +35,13 @@ export default function About() {
           <div className="w-24 h-1 bg-gradient-to-r from-electric-blue to-electric-purple mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+        <div className="grid items-center gap-10 max-w-6xl mx-auto md:grid-cols-2 md:gap-12">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="space-y-6 text-gray-300 text-lg leading-relaxed"
+            className="space-y-5 text-base leading-relaxed text-gray-300 sm:text-lg md:space-y-6"
           >
             <p>
               I am an <strong className="text-white">Electronics and Communication Engineering</strong> student with a Computer Science minor, driven by a curious and experimental mindset.
@@ -59,7 +59,7 @@ export default function About() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-2 gap-6"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6"
           >
             {[
               { icon: BrainCircuit, title: "AI & ML", desc: "Computer Vision & Models" },
@@ -70,7 +70,7 @@ export default function About() {
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="glass p-6 rounded-2xl border border-white/10 hover:border-electric-blue/50 transition-colors group relative overflow-hidden"
+                className="glass p-5 rounded-lg border border-white/10 hover:border-electric-blue/50 transition-colors group relative overflow-hidden sm:p-6"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-electric-blue/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <item.icon className="w-8 h-8 text-electric-blue mb-4" />
