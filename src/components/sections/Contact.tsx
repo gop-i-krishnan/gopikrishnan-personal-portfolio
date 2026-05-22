@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Mail, Phone } from "lucide-react";
+import { useState } from "react";
+
+const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSe_2krepfL58XkngAvprbM6eLAQtW0iJdF0O_XjihELVkUEXQ/formResponse";
 
 const GithubIcon = ({ size = 24 }: { size?: number }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -19,6 +22,8 @@ const LinkedinIcon = ({ size = 24 }: { size?: number }) => (
 );
 
 export default function Contact() {
+  const [submitted, setSubmitted] = useState(false);
+
   return (
     <section id="contact" className="relative py-20 z-10 bg-navy-900 border-t border-white/5 md:py-32">
       <div className="container mx-auto px-4 sm:px-6">
@@ -76,29 +81,42 @@ export default function Contact() {
           </motion.div>
 
           <motion.form
+            action={GOOGLE_FORM_ACTION}
+            method="POST"
+            target="google-form-submit-frame"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
             className="glass p-5 rounded-lg border border-white/10 flex flex-col gap-4 sm:p-8"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={() => setSubmitted(true)}
           >
+            <input type="hidden" name="fvv" value="1" />
+            <input type="hidden" name="pageHistory" value="0" />
+            <input type="hidden" name="fbzx" value="321990035247644690" />
+
             <div>
               <label className="block text-sm text-gray-400 mb-2">Name</label>
-              <input type="text" className="w-full bg-navy-900/50 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-electric-blue transition-colors" placeholder="John Doe" />
+              <input name="entry.328205615" type="text" required className="w-full bg-navy-900/50 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-electric-blue transition-colors" placeholder="John Doe" />
             </div>
             <div>
               <label className="block text-sm text-gray-400 mb-2">Email</label>
-              <input type="email" className="w-full bg-navy-900/50 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-electric-blue transition-colors" placeholder="john@example.com" />
+              <input name="entry.85215213" type="email" required className="w-full bg-navy-900/50 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-electric-blue transition-colors" placeholder="john@example.com" />
             </div>
             <div>
               <label className="block text-sm text-gray-400 mb-2">Message</label>
-              <textarea rows={4} className="w-full bg-navy-900/50 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-electric-blue transition-colors resize-none" placeholder="Your message here..."></textarea>
+              <textarea name="entry.712405175" rows={4} required className="w-full bg-navy-900/50 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-electric-blue transition-colors resize-none" placeholder="Your message here..."></textarea>
             </div>
             <button className="mt-4 py-3 w-full bg-gradient-to-r from-electric-blue to-electric-purple text-white font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-shadow">
-              Send Message
+              {submitted ? "Message Sent" : "Send Message"}
             </button>
+            {submitted && (
+              <p className="text-sm text-electric-blue">
+                Thanks for reaching out. Your message has been sent.
+              </p>
+            )}
           </motion.form>
+          <iframe name="google-form-submit-frame" className="hidden" title="Google form submission" />
         </div>
       </div>
 
