@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2, Mail, Phone, X } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSe_2krepfL58XkngAvprbM6eLAQtW0iJdF0O_XjihELVkUEXQ/formResponse";
 
@@ -23,6 +23,8 @@ const LinkedinIcon = ({ size = 24 }: { size?: number }) => (
 
 export default function Contact() {
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   return (
     <section id="contact" className="relative py-20 z-10 bg-navy-900 border-t border-white/5 md:py-32">
@@ -81,6 +83,7 @@ export default function Contact() {
           </motion.div>
 
           <motion.form
+            ref={formRef}
             action={GOOGLE_FORM_ACTION}
             method="POST"
             target="google-form-submit-frame"
@@ -89,16 +92,11 @@ export default function Contact() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
             className="glass p-5 rounded-lg border border-white/10 flex flex-col gap-4 sm:p-8"
-            onSubmit={(event) => {
-              const form = event.currentTarget;
-
-              setShowConfirmation(true);
-              window.setTimeout(() => form.reset(), 500);
-            }}
+            onSubmit={() => setIsSubmitting(true)}
           >
             <input type="hidden" name="fvv" value="1" />
             <input type="hidden" name="pageHistory" value="0" />
-            <input type="hidden" name="fbzx" value="321990035247644690" />
+            <input type="hidden" name="fbzx" value="7770505704382730156" />
 
             <div>
               <label className="block text-sm text-gray-400 mb-2">Name</label>
@@ -112,11 +110,24 @@ export default function Contact() {
               <label className="block text-sm text-gray-400 mb-2">Message</label>
               <textarea name="entry.712405175" rows={4} required className="w-full bg-navy-900/50 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-electric-blue transition-colors resize-none" placeholder="Your message here..."></textarea>
             </div>
-            <button className="mt-4 py-3 w-full bg-gradient-to-r from-electric-blue to-electric-purple text-white font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-shadow">
-              Send Message
+            <button disabled={isSubmitting} className="mt-4 py-3 w-full bg-gradient-to-r from-electric-blue to-electric-purple text-white font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-shadow disabled:cursor-not-allowed disabled:opacity-70">
+              {isSubmitting ? "Sending..." : "Send Message"}
             </button>
           </motion.form>
-          <iframe name="google-form-submit-frame" className="hidden" title="Google form submission" />
+          <iframe
+            name="google-form-submit-frame"
+            className="hidden"
+            title="Google form submission"
+            onLoad={() => {
+              if (!isSubmitting) {
+                return;
+              }
+
+              setIsSubmitting(false);
+              setShowConfirmation(true);
+              formRef.current?.reset();
+            }}
+          />
         </div>
       </div>
 
