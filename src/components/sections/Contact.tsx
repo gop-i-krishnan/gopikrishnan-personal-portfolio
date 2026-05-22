@@ -90,8 +90,10 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="glass p-5 rounded-lg border border-white/10 flex flex-col gap-4 sm:p-8"
             onSubmit={(event) => {
+              const form = event.currentTarget;
+
               setShowConfirmation(true);
-              event.currentTarget.reset();
+              window.setTimeout(() => form.reset(), 500);
             }}
           >
             <input type="hidden" name="fvv" value="1" />
