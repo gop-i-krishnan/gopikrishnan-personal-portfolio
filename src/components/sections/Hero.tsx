@@ -94,13 +94,14 @@ export default function Hero() {
               </span>
             </a>
             <a
-              href="/Gopikrishnan_Resume_7_5_2026_.pdf"
-              download="Gopikrishnan-D-Resume.pdf"
+              href="https://drive.google.com/file/d/1s7S-PKfsHCRlOVmYyJJrtpgxk8U5wnGE/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative w-full overflow-hidden rounded-full border-white/20 px-7 py-4 text-center font-bold text-white glass transition-all hover:bg-white/10 sm:w-auto sm:px-8"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 <Download size={18} className="group-hover:-translate-y-1 transition-transform" />
-                Download Resume
+                View Resume
               </span>
             </a>
           </motion.div>
