@@ -94,7 +94,8 @@ export default function Hero() {
               </span>
             </a>
             <a
-              href="#"
+              href="/Gopikrishnan_Resume_7_5_2026_.pdf"
+              download="Gopikrishnan-D-Resume.pdf"
               className="group relative w-full overflow-hidden rounded-full border-white/20 px-7 py-4 text-center font-bold text-white glass transition-all hover:bg-white/10 sm:w-auto sm:px-8"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
